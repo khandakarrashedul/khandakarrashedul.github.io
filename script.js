@@ -459,4 +459,53 @@ applyTheme(startTheme);
       }
     }
   }
+    /* ---------- 17. Contact form: sends directly through Formspree ---------- */
+  var contactForm = document.getElementById("contact-form");
+  var formStatus = document.getElementById("form-status");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var nameEl = document.getElementById("cf-name");
+      var emailEl = document.getElementById("cf-email");
+      var msgEl = document.getElementById("cf-message");
+      var submitBtn = contactForm.querySelector(".contact-submit");
+      var valid = true;
+
+      [nameEl, emailEl, msgEl].forEach(function (el) {
+        var ok = el.value.trim() !== "" && (el !== emailEl || /^\S+@\S+\.\S+$/.test(el.value.trim()));
+        el.classList.toggle("is-invalid", !ok);
+        if (!ok) { valid = false; }
+      });
+
+      formStatus.classList.remove("is-error", "is-success");
+
+      if (!valid) {
+        formStatus.textContent = "Please fill in all fields with a valid email address.";
+        formStatus.classList.add("is-error");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      formStatus.textContent = "Sending…";
+
+      fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { "Accept": "application/json" }
+      }).then(function (response) {
+        if (response.ok) {
+          formStatus.textContent = "Thank you! Your message has been sent. I will reply as soon as possible.";
+          formStatus.classList.add("is-success");
+          contactForm.reset();
+        } else {
+          throw new Error("Request failed");
+        }
+      }).catch(function () {
+        formStatus.textContent = "Sorry, the message could not be sent. Please email me directly at khandakarrashedulislam@gmail.com.";
+        formStatus.classList.add("is-error");
+      }).then(function () {
+        submitBtn.disabled = false;
+      });
+    });
+  }
 })();
