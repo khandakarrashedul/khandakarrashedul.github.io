@@ -91,7 +91,7 @@
       </a>
       <a class="profile-icon" href="https://sciprofiles.com/profile/Khandakarrashedulislam" data-profile="sciprofiles" title="SciProfiles" aria-label="SciProfiles">
         <img src="assets/icons/sciprofiles.svg" alt="" width="20" height="20">
-      </a>          
+      </a>
     </div>
 
   </aside>
@@ -119,10 +119,9 @@
       <div class="topbar-right">
         <label class="visually-hidden" for="theme-select">Colour theme</label>
         <select class="theme-select" id="theme-select">
-          <option value="forest">🌲 Forest</option> 
+          <option value="forest">🌲 Forest</option>
           <option value="light">🌞 Light</option>
           <option value="dark">🌙 Dark</option>
-         
         </select>
       </div>
     </header>
@@ -134,59 +133,63 @@
         <div class="container">
           <div class="section-head reveal">
             <p class="eyebrow">Publications</p>
-            <h2>Journal Articles & Conference Presentations</h2>
+            <h2>Journal Articles &amp; Conference Presentations</h2>
             <p class="section-lead">
               Peer-reviewed articles in international journals, plus manuscripts that are submitted or under review and conference presentations. Use the filters to narrow by year, category or keyword.
             </p>
           </div>
 
-          <!-- Filter panel. The Year and Category lists fill themselves in from your entries below. -->
-         <div class="pub-tabs" role="tablist" aria-label="Publication type">
-  <button class="pub-tab is-active" type="button" role="tab" id="tab-journal" aria-selected="true" aria-controls="panel-journal" data-tab="journal">Peer-Reviewed Journal Articles</button>
-  <button class="pub-tab" type="button" role="tab" id="tab-conference" aria-selected="false" aria-controls="panel-conference" data-tab="conference">Conference Papers &amp; Presentations</button>
-</div>
-<div class="filter-panel reveal" role="search">
-  <div class="field">
-    <label class="field-label" for="year-journal">Year</label>
-    <select class="field-input" id="year-journal" data-filter="year">
-      <option value="all">All Years</option>
-    </select>
-  </div>
-  <div class="field">
-    <label class="field-label" for="category-journal">Category</label>
-    <select class="field-input" id="category-journal" data-filter="category">
-      <option value="all">All Categories</option>
-    </select>
-  </div>
-  <div class="field field-grow">
-    <label class="field-label" for="search-journal">Search</label>
-    <input class="field-input" id="search-journal" data-filter="search" type="search" placeholder="Search journal articles…" autocomplete="off">
-  </div>
-  <div class="view-toggle" role="group" aria-label="Publication view">
-    <button class="view-btn" type="button" data-view="detail" aria-pressed="false">
-      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
-      Detail
-    </button>
-    <button class="view-btn" type="button" data-view="compact" aria-pressed="true">
-      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 12h16M12 4v16"/></svg>
-      Compact
-    </button>
-  </div>
-</div>
+          <!-- Tabs: each tab has its own filter panel inside its panel below -->
+          <div class="pub-tabs" role="tablist" aria-label="Publication type">
+            <button class="pub-tab is-active" type="button" role="tab" id="tab-journal" aria-selected="true" aria-controls="panel-journal" data-tab="journal">Peer-Reviewed Journal Articles</button>
+            <button class="pub-tab" type="button" role="tab" id="tab-conference" aria-selected="false" aria-controls="panel-conference" data-tab="conference">Conference Papers &amp; Presentations</button>
+          </div>
 
           <!--
             HOW TO ADD A PUBLICATION
-            Copy one complete <article class="card pub-card ..."> ... </article> block, paste it below the last one,
-            and edit the text. You only edit the visible text. The filters read these parts automatically:
+            Copy one complete <article class="card pub-card ..."> ... </article> block, paste it below the last one
+            in the correct panel, and edit the text. The filters read these parts automatically:
               - the year          (the text inside class="pub-year", four digits like 2025)
               - the category      (the text inside class="pub-category")
               - everything else   (used by the search box)
             Type badge: change the word Journal / Preprint / Under review, and the class word:
-              type-journal   type-preprint   type-review
+              type-journal   type-preprint   type-review   type-conference
             To add a PDF button: copy the DOI <a ...> line, change the word DOI to PDF and use the PDF link.
           -->
-         <div class="pub-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal">
-          <div class="pub-list">
+
+          <!-- ================= TAB 1: JOURNAL ARTICLES ================= -->
+          <div class="pub-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal">
+
+            <div class="filter-panel reveal" role="search">
+              <div class="field">
+                <label class="field-label" for="year-journal">Year</label>
+                <select class="field-input" id="year-journal" data-filter="year">
+                  <option value="all">All Years</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field-label" for="category-journal">Category</label>
+                <select class="field-input" id="category-journal" data-filter="category">
+                  <option value="all">All Categories</option>
+                </select>
+              </div>
+              <div class="field field-grow">
+                <label class="field-label" for="search-journal">Search</label>
+                <input class="field-input" id="search-journal" data-filter="search" type="search" placeholder="Search journal articles…" autocomplete="off">
+              </div>
+              <div class="view-toggle" role="group" aria-label="Publication view">
+                <button class="view-btn" type="button" data-view="detail" aria-pressed="false">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                  Detail
+                </button>
+                <button class="view-btn" type="button" data-view="compact" aria-pressed="true">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 12h16M12 4v16"/></svg>
+                  Compact
+                </button>
+              </div>
+            </div>
+
+            <div class="pub-list">
 
 <!-- ENTRY 1 -->
 <article class="card pub-card is-open reveal">
@@ -306,46 +309,45 @@
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
   </button>
 </article>
-            <!-- ENTRY 4 (placeholder) -->
-            <article class="card pub-card is-open reveal">
-              <div class="pub-main">
-                <h3 class="pub-title">Tracing the Journey of Microplastics in the Northern Bay of Bengal Marine Ecosystems, Bangladesh: A Comprehensive Study on Source Appointments, Distribution, and Potential Risks.</h3>
-                <p><strong>Islam, K. R.</strong>, Debnath, P. C., Rahman, M. S., et al...</p>
-                <div class="pub-meta">
-                  <span class="type-badge type-journal">Journal</span>
-                  <span class="type-badge type-placeholder">Placeholder</span>
-                  <span class="meta-item">
-                    <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg>
-                    <span class="pub-journal">Journal of Hazardous Materials Advances</span>
-                  </span>
-                  <span class="meta-item">
-                    <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
-                    <span class="pub-year">2025</span>
-                  </span>
-                  <span class="meta-item">
-                    <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
-                    <span class="pub-category">Microplastics</span>
-                  </span>
-                </div>
-                <div class="pub-extra">
-                  <ul class="tag-list pub-tags">
-                    <li class="tag">Microplastic</li>
-                    <li class="tag">Ecological risks</li>
-                  </ul>
-                  <p class="pub-summary">This study assessed the occurrence, characteristics, and ecological risks of microplastics (MPs) in water, sediment, and biota from Kuakata Sea Beach, Bangladesh. Samples from 12 locations were analysed using sieving, wet peroxide digestion, density separation, optical microscopy, and FTIR spectroscopy. MP concentrations were higher in sediment (362.1 ± 50.1 MPs/kg) than in water (145.5 ± 40.7 MPs/L) and biota. Fibers and films were the dominant shapes, while polyethylene (PE) was the most frequently identified polymer. Pollution indices indicated moderate to severe contamination, highlighting the need for continued monitoring and targeted mitigation. These findings establish a baseline for assessing MP pollution and potential ecological risks in Kuakata.</p>
-                  <div class="pub-links">
-                    <!-- To activate: replace href with your DOI link and delete the word is-placeholder -->
-                    <a class="btn btn-outline btn-small" href="https://doi.org/10.1016/j.hazadv.2025.100829">
-                      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-                      DOI
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <button class="pub-toggle" type="button" aria-expanded="true" aria-label="Collapse details">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
-              </button>
-            </article>
+
+<!-- ENTRY 4 -->
+<article class="card pub-card is-open reveal">
+  <div class="pub-main">
+    <h3 class="pub-title">Tracing the Journey of Microplastics in the Northern Bay of Bengal Marine Ecosystems, Bangladesh: A Comprehensive Study on Source Appointments, Distribution, and Potential Risks.</h3>
+    <p><strong>Islam, K. R.</strong>, Debnath, P. C., Rahman, M. S., et al...</p>
+    <div class="pub-meta">
+      <span class="type-badge type-journal">Journal</span>
+      <span class="meta-item">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg>
+        <span class="pub-journal">Journal of Hazardous Materials Advances</span>
+      </span>
+      <span class="meta-item">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
+        <span class="pub-year">2025</span>
+      </span>
+      <span class="meta-item">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
+        <span class="pub-category">Microplastics</span>
+      </span>
+    </div>
+    <div class="pub-extra">
+      <ul class="tag-list pub-tags">
+        <li class="tag">Microplastic</li>
+        <li class="tag">Ecological risks</li>
+      </ul>
+      <p class="pub-summary">This study assessed the occurrence, characteristics, and ecological risks of microplastics (MPs) in water, sediment, and biota from Kuakata Sea Beach, Bangladesh. Samples from 12 locations were analysed using sieving, wet peroxide digestion, density separation, optical microscopy, and FTIR spectroscopy. MP concentrations were higher in sediment (362.1 ± 50.1 MPs/kg) than in water (145.5 ± 40.7 MPs/L) and biota. Fibers and films were the dominant shapes, while polyethylene (PE) was the most frequently identified polymer. Pollution indices indicated moderate to severe contamination, highlighting the need for continued monitoring and targeted mitigation. These findings establish a baseline for assessing MP pollution and potential ecological risks in Kuakata.</p>
+      <div class="pub-links">
+        <a class="btn btn-outline btn-small" href="https://doi.org/10.1016/j.hazadv.2025.100829" target="_blank" rel="noopener noreferrer">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+          DOI
+        </a>
+      </div>
+    </div>
+  </div>
+  <button class="pub-toggle" type="button" aria-expanded="true" aria-label="Collapse details">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+  </button>
+</article>
 
 <!-- ENTRY 5 -->
 <article class="card pub-card is-open reveal">
@@ -533,7 +535,7 @@
       <p class="pub-summary">This study assessed microplastic (MP) contamination and associated ecological and human health risks in urban road dust across Bangladesh using pollution indices, multivariate analysis, and machine learning. Mean MP abundance was 52.76 ± 20.24 particles/g, with fibers (77%), 0.1–0.5 mm particles (75%), blue particles (26%), and low-density polyethylene (24%) predominating. Pollution indices indicated moderate-to-severe contamination, while polymer-based assessments revealed high to very high ecological risks. Random Forest and support vector machine models identified electrical conductivity, salinity, pH, organic carbon, and soil texture as key predictors. Estimated annual ingestion reached 19,259.68 particles for children and 5,777.90 for adults, with higher estimated cancer risks for children. Dhaka was the most polluted division.</p>
       <div class="pub-links">
         <a class="btn btn-outline btn-small" href="https://doi.org/10.1016/j.jhazmat.2024.134359" target="_blank" rel="noopener noreferrer">
-          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0-5.7 5.7l1-1"/></svg>
+          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
           DOI
         </a>
       </div>
@@ -777,7 +779,8 @@
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
   </button>
 </article>
-  <!-- ENTRY 16 -->
+
+<!-- ENTRY 16 -->
 <article class="card pub-card is-open reveal">
   <div class="pub-main">
     <h3 class="pub-title">Black carbon derived PET plastic bottle waste and rice straw for sorption of Acid Red 27 dye: Machine learning approaches, kinetics, isotherm and thermodynamic studies.</h3>
@@ -815,6 +818,7 @@
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
   </button>
 </article>
+
 <!-- ENTRY 17 (Under review) -->
 <article class="card pub-card is-open reveal">
   <div class="pub-main">
@@ -909,30 +913,36 @@
   <button class="pub-toggle" type="button" aria-expanded="true" aria-label="Collapse details">
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
   </button>
-</article>            
+</article>
+
+            </div>
+
+            <p class="empty-message pub-empty" hidden>No journal articles match these filters.</p>
           </div>
-           <p class="empty-message pub-empty" hidden>No journal articles match these filters.</p>
-          </div>
-<div class="pub-panel" id="panel-conference" role="tabpanel" aria-labelledby="tab-conference" hidden>
-  <div class="filter-panel reveal" role="search">
-  <div class="field">
-    <label class="field-label" for="year-conference">Year</label>
-    <select class="field-input" id="year-conference" data-filter="year">
-      <option value="all">All Years</option>
-    </select>
-  </div>
-  <div class="field">
-    <label class="field-label" for="category-conference">Category</label>
-    <select class="field-input" id="category-conference" data-filter="category">
-      <option value="all">All Categories</option>
-    </select>
-  </div>
-  <div class="field field-grow">
-    <label class="field-label" for="search-conference">Search</label>
-    <input class="field-input" id="search-conference" data-filter="search" type="search" placeholder="Search conference papers…" autocomplete="off">
-  </div>
-</div>
-  <div class="pub-list">
+
+          <!-- ================= TAB 2: CONFERENCE PAPERS ================= -->
+          <div class="pub-panel" id="panel-conference" role="tabpanel" aria-labelledby="tab-conference" hidden>
+
+            <div class="filter-panel reveal" role="search">
+              <div class="field">
+                <label class="field-label" for="year-conference">Year</label>
+                <select class="field-input" id="year-conference" data-filter="year">
+                  <option value="all">All Years</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field-label" for="category-conference">Category</label>
+                <select class="field-input" id="category-conference" data-filter="category">
+                  <option value="all">All Categories</option>
+                </select>
+              </div>
+              <div class="field field-grow">
+                <label class="field-label" for="search-conference">Search</label>
+                <input class="field-input" id="search-conference" data-filter="search" type="search" placeholder="Search conference papers…" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="pub-list">
 
 <!-- CONF 1 -->
 <article class="card pub-card is-open reveal">
@@ -949,7 +959,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2024</span>
       </span>
-            <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Biochar</span>
       </span>
@@ -972,7 +982,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2024</span>
       </span>
-            <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Microplastics</span>
       </span>
@@ -995,7 +1005,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2024</span>
       </span>
-                  <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Microplastics</span>
       </span>
@@ -1018,7 +1028,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2024</span>
       </span>
-                  <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Nano composite</span>
       </span>
@@ -1041,7 +1051,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2024</span>
       </span>
-                  <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Microplastics</span>
       </span>
@@ -1064,13 +1074,12 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2023</span>
       </span>
-                  <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Wastewater treatment</span>
       </span>
     </div>
   </div>
-  <p class="empty-message pub-empty" hidden>No conference papers match these filters.</p>
 </article>
 
 <!-- CONF 7 -->
@@ -1088,7 +1097,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2023</span>
       </span>
-                  <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Water quality</span>
       </span>
@@ -1111,7 +1120,7 @@
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
         <span class="pub-year">2023</span>
       </span>
-                  <span class="meta-item">
+      <span class="meta-item">
         <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
         <span class="pub-category">Microplastics</span>
       </span>
@@ -1119,8 +1128,10 @@
   </div>
 </article>
 
-  </div>
-</div>          
+            </div>
+
+            <p class="empty-message pub-empty" hidden>No conference papers match these filters.</p>
+          </div>
 
         </div>
       </section>
