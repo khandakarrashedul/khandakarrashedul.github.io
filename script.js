@@ -171,21 +171,22 @@ applyTheme(startTheme);
   }
 
   function applyFilters() {
-    var year = yearSelect ? yearSelect.value : "all";
-    var category = categorySelect ? categorySelect.value : "all";
-    var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
-    var shown = 0;
+  var year = yearSelect ? yearSelect.value : "all";
+  var category = categorySelect ? categorySelect.value : "all";
+  var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+  var activePanel = document.querySelector(".pub-panel:not([hidden])");
+  var shown = 0;
 
-    pubCards.forEach(function (card) {
-      var okYear = year === "all" || getCardYear(card) === year;
-      var okCategory = category === "all" || getCardCategory(card) === category;
-      var okQuery = query === "" || card.textContent.toLowerCase().indexOf(query) !== -1;
-      var match = okYear && okCategory && okQuery;
-      card.hidden = !match;
-      if (match) { shown++; }
-    });
+  pubCards.forEach(function (card) {
+    var okYear = year === "all" || getCardYear(card) === year;
+    var okCategory = category === "all" || getCardCategory(card) === category;
+    var okQuery = query === "" || card.textContent.toLowerCase().indexOf(query) !== -1;
+    var match = okYear && okCategory && okQuery;
+    card.hidden = !match;
+    if (match && (!activePanel || activePanel.contains(card))) { shown++; }
+  });
 
-    if (emptyMessage) { emptyMessage.hidden = shown !== 0; }
+  if (emptyMessage) { emptyMessage.hidden = shown !== 0; }
   }
 
   function setCardOpen(card, open) {
@@ -508,4 +509,32 @@ applyTheme(startTheme);
       });
     });
   }
+  /* ---------- 17. Publications tabs ---------- */
+  var pubTabs = document.querySelectorAll(".pub-tab");
+  var pubPanels = document.querySelectorAll(".pub-panel");
+
+  function showPubTab(name) {
+    pubTabs.forEach(function (tab) {
+      var on = tab.getAttribute("data-tab") === name;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    pubPanels.forEach(function (panel) {
+      var on = panel.id === "panel-" + name;
+      panel.hidden = !on;
+      if (on) {
+        // cards in a hidden panel never fade in, so reveal them now
+        panel.querySelectorAll(".reveal").forEach(function (item) {
+          item.classList.add("is-visible");
+        });
+      }
+    });
+    applyFilters();
+  }
+
+  pubTabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      showPubTab(tab.getAttribute("data-tab"));
+    });
+  });
 })();
