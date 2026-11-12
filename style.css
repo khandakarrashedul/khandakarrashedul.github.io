@@ -1012,3 +1012,31 @@ div.hero-photo {
 }
 .form-status.is-success { color: var(--primary); font-weight: 600; }
 .contact-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+/* ---------- Publications: tabs ---------- */
+.pub-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.pub-tab {
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pub-tab:hover { color: var(--primary); }
+.pub-tab.is-active { color: var(--primary); border-bottom-color: var(--primary); }
+
+.type-conference { background: #ece7fb; color: #5b3fc4; border-color: #d6cdf6; }
+[data-theme="dark"] .type-conference { background: #2a2150; color: #c4b5fd; border-color: #3d3274; }
+
+@media (max-width: 640px) {
+  .pub-tab { flex: 1 1 100%; text-align: left; }
+}
