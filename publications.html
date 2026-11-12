@@ -145,34 +145,34 @@
   <button class="pub-tab is-active" type="button" role="tab" id="tab-journal" aria-selected="true" aria-controls="panel-journal" data-tab="journal">Peer-Reviewed Journal Articles</button>
   <button class="pub-tab" type="button" role="tab" id="tab-conference" aria-selected="false" aria-controls="panel-conference" data-tab="conference">Conference Papers &amp; Presentations</button>
 </div>
-          <div class="filter-panel reveal" role="search">
-            <div class="field">
-              <label class="field-label" for="pub-year">Year</label>
-              <select class="field-input" id="pub-year">
-                <option value="all">All Years</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="field-label" for="pub-category">Category</label>
-              <select class="field-input" id="pub-category">
-                <option value="all">All Categories</option>
-              </select>
-            </div>
-            <div class="field field-grow">
-              <label class="field-label" for="pub-search">Search</label>
-              <input class="field-input" id="pub-search" type="search" placeholder="Search publications…" autocomplete="off">
-            </div>
-            <div class="view-toggle" role="group" aria-label="Publication view">
-              <button class="view-btn" type="button" data-view="detail" aria-pressed="true">
-                <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
-                Detail
-              </button>
-              <button class="view-btn" type="button" data-view="compact" aria-pressed="false">
-                <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 12h16M12 4v16"/></svg>
-                Compact
-              </button>
-            </div>
-          </div>
+<div class="filter-panel reveal" role="search">
+  <div class="field">
+    <label class="field-label" for="year-journal">Year</label>
+    <select class="field-input" id="year-journal" data-filter="year">
+      <option value="all">All Years</option>
+    </select>
+  </div>
+  <div class="field">
+    <label class="field-label" for="category-journal">Category</label>
+    <select class="field-input" id="category-journal" data-filter="category">
+      <option value="all">All Categories</option>
+    </select>
+  </div>
+  <div class="field field-grow">
+    <label class="field-label" for="search-journal">Search</label>
+    <input class="field-input" id="search-journal" data-filter="search" type="search" placeholder="Search journal articles…" autocomplete="off">
+  </div>
+  <div class="view-toggle" role="group" aria-label="Publication view">
+    <button class="view-btn" type="button" data-view="detail" aria-pressed="false">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+      Detail
+    </button>
+    <button class="view-btn" type="button" data-view="compact" aria-pressed="true">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 12h16M12 4v16"/></svg>
+      Compact
+    </button>
+  </div>
+</div>
 
           <!--
             HOW TO ADD A PUBLICATION
@@ -911,8 +911,27 @@
   </button>
 </article>            
           </div>
+           <p class="empty-message pub-empty" hidden>No journal articles match these filters.</p>
           </div>
 <div class="pub-panel" id="panel-conference" role="tabpanel" aria-labelledby="tab-conference" hidden>
+  <div class="filter-panel reveal" role="search">
+  <div class="field">
+    <label class="field-label" for="year-conference">Year</label>
+    <select class="field-input" id="year-conference" data-filter="year">
+      <option value="all">All Years</option>
+    </select>
+  </div>
+  <div class="field">
+    <label class="field-label" for="category-conference">Category</label>
+    <select class="field-input" id="category-conference" data-filter="category">
+      <option value="all">All Categories</option>
+    </select>
+  </div>
+  <div class="field field-grow">
+    <label class="field-label" for="search-conference">Search</label>
+    <input class="field-input" id="search-conference" data-filter="search" type="search" placeholder="Search conference papers…" autocomplete="off">
+  </div>
+</div>
   <div class="pub-list">
 
 <!-- CONF 1 -->
@@ -1051,6 +1070,7 @@
       </span>
     </div>
   </div>
+  <p class="empty-message pub-empty" hidden>No conference papers match these filters.</p>
 </article>
 
 <!-- CONF 7 -->
@@ -1101,7 +1121,7 @@
 
   </div>
 </div>          
-          <p class="empty-message" id="pub-empty" hidden>No publications match these filters.</p>
+
         </div>
       </section>
 
