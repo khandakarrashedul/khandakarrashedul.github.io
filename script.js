@@ -134,13 +134,8 @@ applyTheme(startTheme);
     link.setAttribute("rel", "noopener");
   });
 
-  /* ---------- 6. Publications: filters and Detail / Compact view ---------- */
+  /* ---------- 6. Publications: separate filters for each tab ---------- */
   var pubCards = Array.prototype.slice.call(document.querySelectorAll(".pub-card"));
-  var yearSelect = document.getElementById("pub-year");
-  var categorySelect = document.getElementById("pub-category");
-  var searchInput = document.getElementById("pub-search");
-  var emptyMessage = document.getElementById("pub-empty");
-  var viewButtons = document.querySelectorAll(".view-btn");
 
   function getCardYear(card) {
     var el = card.querySelector(".pub-year");
@@ -170,25 +165,6 @@ applyTheme(startTheme);
     });
   }
 
-  function applyFilters() {
-  var year = yearSelect ? yearSelect.value : "all";
-  var category = categorySelect ? categorySelect.value : "all";
-  var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
-  var activePanel = document.querySelector(".pub-panel:not([hidden])");
-  var shown = 0;
-
-  pubCards.forEach(function (card) {
-    var okYear = year === "all" || getCardYear(card) === year;
-    var okCategory = category === "all" || getCardCategory(card) === category;
-    var okQuery = query === "" || card.textContent.toLowerCase().indexOf(query) !== -1;
-    var match = okYear && okCategory && okQuery;
-    card.hidden = !match;
-    if (match && (!activePanel || activePanel.contains(card))) { shown++; }
-  });
-
-  if (emptyMessage) { emptyMessage.hidden = shown !== 0; }
-  }
-
   function setCardOpen(card, open) {
     card.classList.toggle("is-open", open);
     var toggle = card.querySelector(".pub-toggle");
@@ -198,16 +174,47 @@ applyTheme(startTheme);
     }
   }
 
-  function setView(view) {
-    viewButtons.forEach(function (button) {
-      button.setAttribute("aria-pressed", button.getAttribute("data-view") === view ? "true" : "false");
-    });
-    pubCards.forEach(function (card) { setCardOpen(card, view === "detail"); });
-  }
+  function setupPubPanel(panel) {
+    var cards = Array.prototype.slice.call(panel.querySelectorAll(".pub-card"));
+    var yearSelect = panel.querySelector('[data-filter="year"]');
+    var categorySelect = panel.querySelector('[data-filter="category"]');
+    var searchInput = panel.querySelector('[data-filter="search"]');
+    var emptyMessage = panel.querySelector(".pub-empty");
+    var viewButtons = panel.querySelectorAll(".view-btn");
 
-  if (pubCards.length) {
-    fillSelect(yearSelect, unique(pubCards.map(getCardYear)).sort().reverse());
-    fillSelect(categorySelect, unique(pubCards.map(getCardCategory)).sort());
+    // Dropdowns list only the values that exist in THIS panel
+    fillSelect(yearSelect, unique(cards.map(getCardYear)).sort().reverse());
+    var categories = unique(cards.map(getCardCategory)).sort();
+    fillSelect(categorySelect, categories);
+    if (categorySelect && categories.length === 0) {
+      var catField = categorySelect.closest(".field");
+      if (catField) { catField.hidden = true; }   // no categories here: hide the dropdown
+    }
+
+    function applyFilters() {
+      var year = yearSelect ? yearSelect.value : "all";
+      var category = categorySelect ? categorySelect.value : "all";
+      var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+      var shown = 0;
+
+      cards.forEach(function (card) {
+        var okYear = year === "all" || getCardYear(card) === year;
+        var okCategory = category === "all" || getCardCategory(card) === category;
+        var okQuery = query === "" || card.textContent.toLowerCase().indexOf(query) !== -1;
+        var match = okYear && okCategory && okQuery;
+        card.hidden = !match;
+        if (match) { shown++; }
+      });
+
+      if (emptyMessage) { emptyMessage.hidden = shown !== 0; }
+    }
+
+    function setView(view) {
+      viewButtons.forEach(function (button) {
+        button.setAttribute("aria-pressed", button.getAttribute("data-view") === view ? "true" : "false");
+      });
+      cards.forEach(function (card) { setCardOpen(card, view === "detail"); });
+    }
 
     if (yearSelect) { yearSelect.addEventListener("change", applyFilters); }
     if (categorySelect) { categorySelect.addEventListener("change", applyFilters); }
@@ -217,7 +224,7 @@ applyTheme(startTheme);
       button.addEventListener("click", function () { setView(button.getAttribute("data-view")); });
     });
 
-    pubCards.forEach(function (card) {
+    cards.forEach(function (card) {
       var toggle = card.querySelector(".pub-toggle");
       if (toggle) {
         toggle.addEventListener("click", function () {
@@ -225,8 +232,12 @@ applyTheme(startTheme);
         });
       }
     });
+
+    // Panels with a Detail/Compact switch start in Compact view
+    if (viewButtons.length) { setView("compact"); }
   }
 
+  document.querySelectorAll(".pub-panel").forEach(setupPubPanel);
   /* ---------- 7. Fade-in on scroll ---------- */
   var revealItems = document.querySelectorAll(".reveal");
   if (revealItems.length) {
@@ -341,7 +352,7 @@ applyTheme(startTheme);
     if (item) { item.classList.add("meta-category"); }
   });
   // Close all cards when the page opens
-  if (pubCards.length) { setView("compact"); }
+ 
 
   /* ---------- 14. DOI button beside the year in Compact view ---------- */
   pubCards.forEach(function (card) {
@@ -509,7 +520,7 @@ applyTheme(startTheme);
       });
     });
   }
-  /* ---------- 17. Publications tabs ---------- */
+   /* ---------- 17. Publications tabs ---------- */
   var pubTabs = document.querySelectorAll(".pub-tab");
   var pubPanels = document.querySelectorAll(".pub-panel");
 
@@ -523,13 +534,12 @@ applyTheme(startTheme);
       var on = panel.id === "panel-" + name;
       panel.hidden = !on;
       if (on) {
-        // cards in a hidden panel never fade in, so reveal them now
+        // cards and the filter panel in a hidden tab never faded in, so reveal them now
         panel.querySelectorAll(".reveal").forEach(function (item) {
           item.classList.add("is-visible");
         });
       }
     });
-    applyFilters();
   }
 
   pubTabs.forEach(function (tab) {
